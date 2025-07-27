@@ -8,3 +8,4 @@ LOCKOUT_TIME = int(os.getenv("LOCKOUT_TIME", 30))
 DB_PATH = os.getenv("DB_PATH", "users.db")
 
 APP_PEPPER = os.getenv("APP_PEPPER", "")
+FERNET_KEY = os.getenv("FERNET_KEY")
