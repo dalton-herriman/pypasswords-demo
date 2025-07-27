@@ -87,11 +87,11 @@ python app.py
 ---
 
 ## 🔒 Optional Enhancements
-✅ Full database encryption with SQLCipher.
-✅ Automatic password rehashing when Argon2 parameters change.
-✅ Password reset flow with enforced policy.
-✅ IP-based login attempt tracking.
-✅ Integration with web frameworks (Flask/Django).
+- ✅ Full database encryption with SQLCipher.
+- ✅ Automatic password rehashing when Argon2 parameters change.
+- ✅ Password reset flow with enforced policy.
+- ✅ IP-based login attempt tracking.
+- ✅ Integration with web frameworks (Flask/Django).
 
 ---
 ## 📚 Learning Goals
