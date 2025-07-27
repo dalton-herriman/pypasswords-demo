@@ -1,6 +1,7 @@
 from cli.register import register
 from cli.login import login
 
+
 def main():
     print("1) Register")
     print("2) Login")
@@ -12,6 +13,7 @@ def main():
         login()
     else:
         print("Invalid choice.")
+
 
 if __name__ == "__main__":
     main()

@@ -5,6 +5,7 @@ import pytest
 from db.database import Database
 from password_service import PasswordService
 
+
 @pytest.fixture
 def temp_db():
     temp_file = tempfile.NamedTemporaryFile(delete=False)
@@ -15,6 +16,7 @@ def temp_db():
     yield db
     db.close()
     os.remove(db_path)
+
 
 @pytest.fixture
 def password_service():

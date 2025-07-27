@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+
 class Database:
     def __init__(self, db_path):
         self.db_path = db_path
@@ -22,7 +23,7 @@ class Database:
         cursor.execute(query, params)
         self.connection.commit()
         return cursor.fetchall()
-    
+
     def create_db(self):
         if not os.path.exists(self.db_path):
             self.connect()
@@ -44,12 +45,16 @@ class Database:
         col_names = [c[1] for c in columns]
 
         if "failed_attempts" not in col_names:
-            self.execute_query("ALTER TABLE users ADD COLUMN failed_attempts INTEGER DEFAULT 0")
+            self.execute_query(
+                "ALTER TABLE users ADD COLUMN failed_attempts INTEGER DEFAULT 0"
+            )
         if "last_attempt" not in col_names:
-            self.execute_query("ALTER TABLE users ADD COLUMN last_attempt REAL DEFAULT 0")
+            self.execute_query(
+                "ALTER TABLE users ADD COLUMN last_attempt REAL DEFAULT 0"
+            )
 
         self.close()
-        
+
     def get_user_attempts(self, username):
         self.connect()
         query = "SELECT failed_attempts, last_attempt FROM users WHERE username = ?"
@@ -59,16 +64,20 @@ class Database:
 
     def update_user_attempts(self, username, attempts, timestamp):
         self.connect()
-        query = "UPDATE users SET failed_attempts = ?, last_attempt = ? WHERE username = ?"
+        query = (
+            "UPDATE users SET failed_attempts = ?, last_attempt = ? WHERE username = ?"
+        )
         self.execute_query(query, (attempts, timestamp, username))
         self.close()
 
     def reset_user_attempts(self, username):
         self.connect()
-        query = "UPDATE users SET failed_attempts = 0, last_attempt = 0 WHERE username = ?"
+        query = (
+            "UPDATE users SET failed_attempts = 0, last_attempt = 0 WHERE username = ?"
+        )
         self.execute_query(query, (username,))
         self.close()
-    
+
     def add_user(self, username, hashed_password):
         self.connect()
         query = "INSERT INTO users (username, password) VALUES (?, ?)"

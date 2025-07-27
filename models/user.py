@@ -1,6 +1,7 @@
 import time
 from config import MAX_ATTEMPTS, LOCKOUT_TIME
 
+
 class User:
     def __init__(self, username, password, password_service):
         self.username = username
@@ -10,11 +11,14 @@ class User:
     def save(self, db):
         hashed_password = self.password_service.hash_password(self.password)
         return db.add_user(self.username, hashed_password)
-    
+
     def verify(self, db):
         failed_attempts, last_attempt = db.get_user_attempts(self.username)
 
-        if failed_attempts >= MAX_ATTEMPTS and (time.time() - last_attempt) < LOCKOUT_TIME:
+        if (
+            failed_attempts >= MAX_ATTEMPTS
+            and (time.time() - last_attempt) < LOCKOUT_TIME
+        ):
             remaining = int(LOCKOUT_TIME - (time.time() - last_attempt))
             print(f"Too many failed attempts. Try again in {remaining} seconds.")
             return False

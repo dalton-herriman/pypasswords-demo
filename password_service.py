@@ -2,6 +2,7 @@ import os
 from argon2 import PasswordHasher, exceptions
 from config import APP_PEPPER
 
+
 class PasswordService:
     def __init__(self):
         self.ph = PasswordHasher()

@@ -4,6 +4,7 @@ from db.database import Database
 from models.user import User
 from config import DB_PATH
 
+
 def login():
     db = Database(DB_PATH)
     password_service = PasswordService()
